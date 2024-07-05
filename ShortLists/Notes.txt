@@ -1,0 +1,46 @@
+Keytool location
+
+C:\Users\admin\Atlassian\Jira\jre\bin
+ command: 
+ 
+
+ NOTE: run the command when project is in release mode or else it will generate the keystore file for debug.
+ C:\Users\admin\Atlassian\Jira\jre\bin\keytool.exe -genkey -v -keystore StoreLists.keystore -alias ListsAlias -keyalg RSA -keysize 2048 -validity 10000
+
+
+
+ PS C:\Users\admin\source\repos\ShortLists> C:\Users\admin\Atlassian\Jira\jre\bin\keytool.exe -genkey -v -keystore StoreLists.keystore -alias ListsAlias -keyalg RSA -keysize 2048 -validity 10000
+Enter keystore password:
+Re-enter new password:
+They don't match. Try again
+Enter keystore password: *********#**7*
+Re-enter new password:  C*********#**7*
+What is your first and last name?
+  [Unknown]:  Shijo Joseph
+What is the name of your organizational unit?
+  [Unknown]:  NA
+What is the name of your organization?
+  [Unknown]:  Digitally_Inspired
+What is the name of your City or Locality?
+  [Unknown]:  Charlotte
+What is the name of your State or Province?
+  [Unknown]:  NC
+What is the two-letter country code for this unit?
+  [Unknown]:  US
+Is CN=Shijo Joseph, OU=NA, O=Digitally_Inspired, L=Charlotte, ST=NC, C=US correct?
+  [no]:  y
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 10,000 days
+        for: CN=Shijo Joseph, OU=NA, O=Digitally_Inspired, L=Charlotte, ST=NC, C=US
+Enter key password for <ListsAlias>
+        (RETURN if same as keystore password):
+[Storing StoreLists.keystore]
+
+Warning:
+The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using "keytool -importkeystore -srckeystore StoreLists.keystore -destkeystore StoreLists.keystore -deststoretype pkcs12".
+
+
+
+how to make an android playstore publishable package at this point
+
+dotnet publish -c Release -f:net8.0-android
