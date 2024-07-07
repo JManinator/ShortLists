@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.8.34330.188
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLists", "ShortLists\ShortLists.csproj", "{17717B2A-D60E-4338-8A5B-5D7830FE832C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLists", "ShortLists\ShortLists.csproj", "{98F998F7-E236-4C88-9E78-6E928F9C597F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,17 +11,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{17717B2A-D60E-4338-8A5B-5D7830FE832C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17717B2A-D60E-4338-8A5B-5D7830FE832C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17717B2A-D60E-4338-8A5B-5D7830FE832C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{17717B2A-D60E-4338-8A5B-5D7830FE832C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17717B2A-D60E-4338-8A5B-5D7830FE832C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17717B2A-D60E-4338-8A5B-5D7830FE832C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{98F998F7-E236-4C88-9E78-6E928F9C597F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F998F7-E236-4C88-9E78-6E928F9C597F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F998F7-E236-4C88-9E78-6E928F9C597F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{98F998F7-E236-4C88-9E78-6E928F9C597F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F998F7-E236-4C88-9E78-6E928F9C597F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F998F7-E236-4C88-9E78-6E928F9C597F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {94566901-CBC9-4735-A458-C641EAD24404}
+		SolutionGuid = {7BAB88EC-7F0E-4C56-89B4-E83A4D0955D3}
 	EndGlobalSection
 EndGlobal

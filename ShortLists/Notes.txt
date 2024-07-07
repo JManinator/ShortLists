@@ -44,3 +44,29 @@ The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS
 how to make an android playstore publishable package at this point
 
 dotnet publish -c Release -f:net8.0-android
+
+
+
+
+final approach to generate the signed file 
+
+https://www.applicationloader.net/keystore.html
+
+
+Android Certificate Generate Online
+Create android development and release certificate. it is easy and just enter password and certificate name information and one click
+
+Details used: 
+
+
+Password : Password#123
+
+Common name : Common Org
+
+Expire 1 Year
+alias: 1
+
+Address 
+NewYork
+State of New York
+USA

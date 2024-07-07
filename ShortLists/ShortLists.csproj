@@ -36,8 +36,21 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<SignAssembly>False</SignAssembly>
-		<AssemblyOriginatorKeyFile>C:\Users\admin\source\repos\ShortLists\ShortLists.keystore</AssemblyOriginatorKeyFile>
+		<AndroidSigningKeyStore>android.keystore</AndroidSigningKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>Password#123</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>1</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>Password#123</AndroidSigningKeyPass>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>Password#123</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>1</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>Password#123</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -63,13 +76,5 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
-
-  <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
-    <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>ShortLists.keystore</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>ShortLists.keystore Chiramattel#1978</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>ListAlias.alias</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>ListAlias.alias Chiramattel#1978</AndroidSigningKeyPass>
-  </PropertyGroup>
 
 </Project>
