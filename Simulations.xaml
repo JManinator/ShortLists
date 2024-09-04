@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningCost.Pages.Main.Simulations"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:vms="clr-namespace:RunningCost.Pages.Main"
+             xmlns:local="clr-namespace:RunningCost.Pages.Main"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    Title="Update Baseline">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint=".5,.5">
+            <GradientStop Color="#ffafbd"
+                          Offset=".1"/>
+            <GradientStop Color="#ffc3a0"
+                          Offset=".9"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="TextColor" Value="DarkSlateGray" />
+            <Setter Property="Margin" Value="0,10" />
+        </Style>
+        <Style x:Key="BoldLabelStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+    <tabView:SfTabView x:Name="tabView">
+        <tabView:SfTabView.Items>
+            <tabView:SfTabItem Header="Simulation Settings">
+                <tabView:SfTabItem.Content>
+                    <Grid>
+                        <VerticalStackLayout>
+                            <local:TickerSelection  x:Name="tickerSelection" />
+                            <Label Margin="10,0,10,0">Historical Interval:</Label>
+                            <Picker  ItemsSource="{Binding HistoricalRange}" Margin="10,0,10,0" x:Name="historical" TextColor="Black" Title="Select">
+                                <Picker.ItemDisplayBinding>
+                                    <Binding Path="DisplayValue" />
+                                </Picker.ItemDisplayBinding>
+                            </Picker>
+                            <Label Margin="10,0,10,0">Moving Averages:</Label>
+                            <editors:SfComboBox Text="Select" Margin="10,0,10,0" BackgroundColor="Transparent" x:Name="maItems" MinimumHeightRequest="45" DisplayMemberPath = "DisplayValue" TextMemberPath = "DisplayValue"
+                                SelectionMode="Multiple" ItemsSource="{Binding MovingAverages}" />
+                            <Grid Margin="10,0,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"  FontAttributes="Bold" FontSize="14">Sim Start Date:</Label>
+                                <Label Grid.Column="1"  FontAttributes="Bold" FontSize="14">Sim End Date:</Label>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <picker:SfDateTimePicker  Grid.Column="0"  Mode="Dialog"  x:Name="simStartPicker">
+                                    <picker:SfDateTimePicker.FooterView>
+                                        <picker:PickerFooterView ShowOkButton="True" Height="40" />
+                                    </picker:SfDateTimePicker.FooterView>
+                                </picker:SfDateTimePicker>
+                                <Button Grid.Column="0"  TextColor="Black" 
+                                    BackgroundColor="Transparent" BorderColor="Gray" BorderWidth="1" CornerRadius="2"
+                                    Padding="10,5" FontAttributes="None" Clicked="OpenSimStartDate" x:Name="simStartBtn">
+                                    <Button.Shadow>
+                                        <Shadow Brush="Transparent" Offset="0,0" Radius="0" />
+                                    </Button.Shadow>
+                                </Button>
+                                <Label Margin="2,10,2,2" Grid.Column="1" FontAttributes="Bold" FontSize="14">-</Label>
+                                <picker:SfDateTimePicker  Grid.Column="2"  Mode="Dialog"  x:Name="simEndPicker">
+                                    <picker:SfDateTimePicker.FooterView>
+                                        <picker:PickerFooterView ShowOkButton="True" Height="40" />
+                                    </picker:SfDateTimePicker.FooterView>
+                                </picker:SfDateTimePicker>
+                                <Button Grid.Column="2" TextColor="Black" 
+                                    BackgroundColor="Transparent" BorderColor="Gray" BorderWidth="1" CornerRadius="2"
+                                    Padding="10,5" FontAttributes="None" Clicked="OpenSimEndDate" x:Name="simEndBtn">
+                                    <Button.Shadow>
+                                        <Shadow Brush="Transparent" Offset="0,0" Radius="0" />
+                                    </Button.Shadow>
+                                </Button>
+                            </Grid>
+                            <!--<Grid Margin="10,0,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <picker:SfDateTimePicker  Grid.Column="0"  Mode="Dialog"  x:Name="simStartPicker">
+                                    <picker:SfDateTimePicker.FooterView>
+                                        <picker:PickerFooterView ShowOkButton="True" Height="40" />
+                                    </picker:SfDateTimePicker.FooterView>
+                                </picker:SfDateTimePicker>
+                                <picker:SfDateTimePicker  Grid.Column="1"  Mode="Dialog"  x:Name="simEndPicker">
+                                    <picker:SfDateTimePicker.FooterView>
+                                        <picker:PickerFooterView ShowOkButton="True" Height="40" />
+                                    </picker:SfDateTimePicker.FooterView>
+                                </picker:SfDateTimePicker>
+                                <DatePicker  Grid.Column="0"/>
+                                <DatePicker  Grid.Column="1"/>
+                            </Grid>-->
+                            <Grid Margin="10,10,10,0">
+                                <Button Padding="0" HeightRequest="35"  Grid.Column="1" Clicked="RunSimulation" Text="Run Simulation"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Grid>
+                    
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Header="Results">
+                <tabView:SfTabItem.Content>
+                    <Grid Margin="10">
+                        <VerticalStackLayout>
+                            <chart:SfCartesianChart x:Name="simChart" MinimumHeightRequest="525">
+                                <chart:SfCartesianChart.XAxes>
+                                    <chart:DateTimeAxis/>
+                                </chart:SfCartesianChart.XAxes>
+
+                                <chart:SfCartesianChart.YAxes>
+                                    <chart:NumericalAxis/>
+                                </chart:SfCartesianChart.YAxes>
+                                <chart:SfCartesianChart.SelectionBehavior >
+                                    <chart:SeriesSelectionBehavior SelectionChanged="ChartSelectionChanged"  Type="Multiple" SelectionBrush="#314A6E"/>
+                                </chart:SfCartesianChart.SelectionBehavior>
+                                 <chart:LineSeries ItemsSource="{Binding ChartDataFiltered}" x:Name="priceLineSeries" XBindingPath="TimeLine" YBindingPath="Historical" ShowMarkers="True">
+                                </chart:LineSeries>
+                                <chart:LineSeries IsVisible="{Binding LineMA1Visible}" ItemsSource="{Binding ChartDataFiltered}" XBindingPath="TimeLine" YBindingPath="MAPriceV1" ShowMarkers="True">
+                                </chart:LineSeries>
+                                <chart:LineSeries IsVisible="{Binding LineMA2Visible}" ItemsSource="{Binding ChartDataFiltered}" XBindingPath="TimeLine" YBindingPath="MAPriceV2" ShowMarkers="True">
+                                </chart:LineSeries>
+                                <chart:LineSeries IsVisible="{Binding LineMA3Visible}" ItemsSource="{Binding ChartDataFiltered}" XBindingPath="TimeLine" YBindingPath="MAPriceV3" ShowMarkers="True">
+                                </chart:LineSeries>
+                                <chart:LineSeries IsVisible="{Binding LineMA4Visible}" ItemsSource="{Binding ChartDataFiltered}" XBindingPath="TimeLine" YBindingPath="MAPriceV4" ShowMarkers="True">
+                                </chart:LineSeries>
+                                <chart:LineSeries IsVisible="{Binding TradeLineVisible}" ItemsSource="{Binding ChartDataFiltered}" XBindingPath="TimeLine" YBindingPath="LastTransactionAmt" ShowMarkers="True" PaletteBrushes="{Binding CustomBrushes}">
+                                    <chart:LineSeries.MarkerSettings>
+                                        <chart:ChartMarkerSettings Type="Diamond" Fill="Brown" Stroke="Black" StrokeWidth="1" Height="2" Width="2"/>
+                                    </chart:LineSeries.MarkerSettings>
+                                </chart:LineSeries>
+                            </chart:SfCartesianChart>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <picker:SfDateTimePicker  Grid.Column="0"  Mode="Dialog"  x:Name="displayStartPicker">
+                                    <picker:SfDateTimePicker.FooterView>
+                                        <picker:PickerFooterView ShowOkButton="True" Height="40" />
+                                    </picker:SfDateTimePicker.FooterView>
+                                </picker:SfDateTimePicker>
+                                <Button Grid.Column="0"  TextColor="Black" 
+                                        BackgroundColor="Transparent" BorderColor="Gray" BorderWidth="1" CornerRadius="2"
+                                        Padding="10,5" FontAttributes="None" Clicked="OpenDisplayStartDate" x:Name="displayStartBtn">
+                                    <Button.Shadow>
+                                        <Shadow Brush="Transparent" Offset="0,0" Radius="0" />
+                                    </Button.Shadow>
+                                </Button>
+                                <Label Margin="2,10,2,2" Grid.Column="1" FontAttributes="Bold" FontSize="14">-</Label>
+                                <Picker ItemsSource="{Binding DisplayIntervalFiltered}" Margin="10,0,10,0" 
+                                         x:Name="displayInterval" TextColor="Black" Title="Select">
+                                    <Picker.ItemDisplayBinding>
+                                        <Binding Path="DisplayValue" />
+                                    </Picker.ItemDisplayBinding>
+                                </Picker>
+                            </Grid>
+                            <Grid Margin="0,10,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!-- Move Back Button. When clicked move back by 50% of interval Also updates Display Start and end. Cannot go beyond Calc period-->
+                                <Button Margin="0,0,5,0" Padding="0" HeightRequest="35" Grid.Column="0" Text="&lt;&lt;" />
+                                <!-- Move Forward Button. When clicked move back by 50% of interval. Also updates Display Start and end.Cannot go beyond Calc period -->
+                                <Button Margin="5,0,0,0" Padding="0" HeightRequest="35"  Grid.Column="1" Text=">>"/>
+                                <Label Margin="10,10,0,0" Grid.Column="2" FontAttributes="Bold" FontSize="14">Range:</Label>
+                                <!--some bug in sfcontrols cannot use binding in XAML below-->
+                                <Picker  Grid.Column="3"  x:Name="displayRange" TextColor="Black" Title="Select">
+                                    <Picker.ItemDisplayBinding>
+                                        <Binding Path="DisplayValue" />
+                                    </Picker.ItemDisplayBinding>
+                                </Picker>
+                            </Grid>
+                            <!--<Picker ItemsSource="{Binding DisplayRangeFiltered}" x:Name="displayRange" TextColor="Black" Title="Select">
+                                <Picker.ItemDisplayBinding>
+                                    <Binding Path="DisplayValue" />
+                                </Picker.ItemDisplayBinding>
+                            </Picker>-->
+                        </VerticalStackLayout>
+                    </Grid>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+        </tabView:SfTabView.Items>
+    </tabView:SfTabView>
+</ContentPage>
+
+<!--Also determines the interval based on start and ned period. Eg: 1hr,1Day ,1 week, 1 month etc...-->
