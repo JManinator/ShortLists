@@ -218,9 +218,13 @@ public partial class Simulations : ContentPage
                             ModelInstance.DisplayRangeAll.Where(x => x.RefID >= ((SelectionModel<double>)historical.SelectedItem).RefID).ForEach(x => ModelInstance.DisplayRangeFiltered.Add(x));
                             ModelInstance.DisplayIntervalFiltered.Clear();
                             ModelInstance.DisplayIntervalAll.Where(x => x.RefID >= ((SelectionModel<double>)historical.SelectedItem).RefID).ForEach(x => ModelInstance.DisplayIntervalFiltered.Add(x));
+                            
                             displayRange.SelectedIndex = 0;
                             displayInterval.SelectedItem = ModelInstance.DisplayIntervalFiltered.FirstOrDefault(x => x.DisplayValue == "1 Week");
+                            
                             if(displayInterval.SelectedItem == null) displayInterval.SelectedIndex = 0;
+
+                            ModelInstance.ChartDataAll.Where(x => x.TimeLine > displayStartPicker.SelectedDate && x.TimeLine <= displayStartPicker.SelectedDate.Value.AddSeconds(((SelectionModel<double>)displayInterval.SelectedItem).RefID)).ForEach(x => ModelInstance.ChartDataFiltered.Add(x));
 
                             tabView.SelectedIndex = 1;
                         }
